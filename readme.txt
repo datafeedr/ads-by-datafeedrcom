@@ -3,8 +3,8 @@
 Contributors: datafeedr.com
 Tags: ads, random ads, rotating ads, datafeedr, advertisements, advertising, banner ads, banners, adsense, google adsense
 Requires at least: 3.5
-Tested up to: 4.9
-Stable tag: 1.0.12
+Tested up to: 4.9.2
+Stable tag: 1.0.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ View the full video tutorial playlist [here](http://www.youtube.com/playlist?lis
 [youtube http://www.youtube.com/watch?v=MU87O6J9zSo]
 
 == Changelog ==
+
+= 1.0.12 - 2018-01-17 =
+* Updated readme.txt and added new README.md.
 
 = 1.0.12 - 2017-06-02 =
 * Changed methods with same name as their class to proper __construct() methods.
