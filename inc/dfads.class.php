@@ -248,8 +248,12 @@ class DFADS {
 				$html .= $this->open_tag( $ad_html, 'dfad dfad_pos_'.$i.$first_last.$args['ad_class'], $args['container_id'].'_ad_'.$ad->ID );
 			}
 			
-			// Get ad content.
-			$html .= $ad->post_content;
+			// Get ad content and apply filters.
+			$ad_post_content = $ad->post_content;
+			$ad_post_content = apply_filters('dfads_ad_post_content', $ad_post_content);
+			
+			// Append ad content to html block
+			$html .= $ad_post_content;
 			
 			// If ad_html is not empty, get the ads's closing tag.
 			if ( $ad_html != '') {
@@ -263,6 +267,8 @@ class DFADS {
 		if ( $container_html != '') {
 			$html .= $this->close_tag( $container_html );
 		}
+		
+		$html = apply_filters('dfads_ads_block_content', $html);
 		
 		return $html;
 	}
