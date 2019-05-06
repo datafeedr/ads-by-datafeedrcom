@@ -4,7 +4,7 @@ Contributors: datafeedr.com
 Tags: ads, random ads, rotating ads, datafeedr, advertisements, advertising, banner ads, banners, adsense, google adsense
 Requires at least: 3.5
 Tested up to: 5.2
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ View the full video tutorial playlist [here](http://www.youtube.com/playlist?lis
 [youtube http://www.youtube.com/watch?v=MU87O6J9zSo]
 
 == Changelog ==
+
+= 1.0.16 - 2019/05/06 =
+* Updated readme.
 
 = 1.0.15 - 2019/02/19 =
 * Updated readme.
