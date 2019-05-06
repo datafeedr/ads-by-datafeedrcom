@@ -4,7 +4,7 @@ Plugin Name: Ads by datafeedr.com
 Plugin URI: https://www.datafeedr.com/
 Description: Randomly display any type of advertisement anywhere on your site.  Add rotating banner ads, Google Adsense, videos, text links and more to your sidebar, widget areas, posts and pages.
 Version: 1.0.15
-Tested up to: 5.1
+Tested up to: 5.2
 Author: datafeedr.com
 Author URI: https://www.datafeedr.com/
 */
