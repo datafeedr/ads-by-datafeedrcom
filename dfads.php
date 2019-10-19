@@ -3,13 +3,11 @@
 Plugin Name: Ads by datafeedr.com
 Plugin URI: https://www.datafeedr.com/
 Description: Randomly display any type of advertisement anywhere on your site.  Add rotating banner ads, Google Adsense, videos, text links and more to your sidebar, widget areas, posts and pages.
-Version: 1.0.16
-Tested up to: 5.2
+Version: 1.1.0
+Tested up to: 5.3
 Author: datafeedr.com
 Author URI: https://www.datafeedr.com/
-*/
 
-/*  
 Copyright 2019 Ads by datafeedr.com
 
 This program is free software; you can redistribute it and/or modify
@@ -31,7 +29,7 @@ define( 'DFADS_PLUGIN_URL', plugin_dir_url(__FILE__) );
 define( 'DFADS_METABOX_PREFIX', '_dfads_' );
 define( 'DFADS_CONTEXT', 'dfads' );
 define( 'DFADS_DOCS_URL', 'http://www.datafeedr.com/dfads/' );
-define( 'DFADS_VERSION', '1.0.16' );
+define( 'DFADS_VERSION', '1.1.0' );
 
 /**
  * Require necessary files.

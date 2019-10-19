@@ -3,8 +3,8 @@
 Contributors: datafeedr.com
 Tags: ads, random ads, rotating ads, datafeedr, advertisements, advertising, banner ads, banners, adsense, google adsense
 Requires at least: 3.5
-Tested up to: 5.2
-Stable tag: 1.0.16
+Tested up to: 5.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ View the full video tutorial playlist [here](http://www.youtube.com/playlist?lis
 [youtube http://www.youtube.com/watch?v=MU87O6J9zSo]
 
 == Changelog ==
+
+= 1.1.0 - 2019/10/19 =
+* Updated to latest version of CMB2 after a vulnerability report was issued for previous versions of CMB2.
 
 = 1.0.16 - 2019/05/06 =
 * Updated readme.
