@@ -47,7 +47,6 @@ class DFADS_Admin {
     public function create_admin_page() {
 		?>
 		<div class="wrap">
-			<?php screen_icon( 'dfads' ); ?>
 			<h2>Ads Admin Panel</h2>
 			<div class="metabox-holder has-right-sidebar">		
 				<div class="inner-sidebar">
