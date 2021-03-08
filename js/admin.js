@@ -2,31 +2,27 @@
 
 	$('select#dfads_groups').attr('multiple', 'multiple');
 
-	$('.code_type').change(
-		function() {
-			$('#dfads_build_qs').css('display','block');
-			$('#code_middle').css('display','inline');
-			if ($(this).val() == 'sc') {
-				$('#code_begin, #code_middle, #code_end').removeClass('php').addClass('sc');
-				$('#code_begin').text("[dfads params='");
-				$('#code_end').text("']");
-			} else if ($(this).val() == 'php') {
-				$('#code_begin, #code_middle, #code_end').removeClass('sc').addClass('php');
-				$('#code_begin').html("&lt;?php <span class='dfads_echo'>echo</span> dfads<span class='dfads_paren'>(</span> <span class='dfads_quote'>'</span>");
-				$('#code_end').html("<span class='dfads_quote'>'</span> <span class='dfads_paren'>);</span> ?&gt;");
-			}
+	$('.code_type').on("change", function () {
+		$('#dfads_build_qs').css('display', 'block');
+		$('#code_middle').css('display', 'inline');
+		if ($(this).val() == 'sc') {
+			$('#code_begin, #code_middle, #code_end').removeClass('php').addClass('sc');
+			$('#code_begin').text("[dfads params='");
+			$('#code_end').text("']");
+		} else if ($(this).val() == 'php') {
+			$('#code_begin, #code_middle, #code_end').removeClass('sc').addClass('php');
+			$('#code_begin').html("&lt;?php <span class='dfads_echo'>echo</span> dfads<span class='dfads_paren'>(</span> <span class='dfads_quote'>'</span>");
+			$('#code_end').html("<span class='dfads_quote'>'</span> <span class='dfads_paren'>);</span> ?&gt;");
 		}
-	);
+	});
 
-	$('#dfads_orderby').change(
-		function() {
-			if ($('#dfads_orderby').find(":selected").val() != 'random' && $('#dfads_orderby').find(":selected").val() != '') {
-				$('#dfads_order_field').css('display','block');
-			} else {
-				$('#dfads_order_field').css('display','none');
-			}	
+	$('#dfads_orderby').on("change", function () {
+		if ($('#dfads_orderby').find(":selected").val() != 'random' && $('#dfads_orderby').find(":selected").val() != '') {
+			$('#dfads_order_field').css('display', 'block');
+		} else {
+			$('#dfads_order_field').css('display', 'none');
 		}
-	);
+	});
 	
 	// http://jsfiddle.net/edelman/KcX6A/1507/
 	function SelectText(element) {
@@ -47,7 +43,7 @@
 		}
 	}
 	
-    $('#code_area').click(function() {
+    $('#code_area').on( "click", function() {
         SelectText('code_area');
     });
 	
@@ -96,9 +92,18 @@
 		$("#code_area").hide().fadeIn(500);
 	}
 
-	$("#dfads_build_qs :checkbox, #dfads_build_qs :radio, .code_type").click(showValues);
-	$("#dfads_build_qs select").change(showValues);
-	$("#dfads_build_qs input").keyup(showValues);
+	$("#dfads_build_qs :checkbox, #dfads_build_qs :radio, .code_type").on("click", function () {
+		showValues();
+	});
+
+	$("#dfads_build_qs select").on("change", function () {
+		showValues();
+	});
+
+	$("#dfads_build_qs input").on("keyup", function () {
+		showValues();
+	});
+
 	//showValues();
 	
 })( jQuery );

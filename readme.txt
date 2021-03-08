@@ -3,8 +3,8 @@
 Contributors: datafeedr.com
 Tags: ads, random ads, rotating ads, datafeedr, advertisements, advertising, banner ads, banners, adsense, google adsense
 Requires at least: 3.5
-Tested up to: 5.6
-Stable tag: 1.1.2
+Tested up to: 5.7
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ View the full video tutorial playlist [here](http://www.youtube.com/playlist?lis
 [youtube http://www.youtube.com/watch?v=MU87O6J9zSo]
 
 == Changelog ==
+
+= 1.1.3 - 2020/03/08 =
+* Updated jQuery for upgrade.
 
 = 1.1.2 - 2020/12/01 =
 * Update for WordPress 5.6.
