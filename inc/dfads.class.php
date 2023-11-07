@@ -29,8 +29,8 @@ class DFADS {
 		// Count impressions.
 		$this->update_impression_count( $ads );
 		
-		// Return user's own callback function.
-		if ( function_exists( $this->args['callback_function'] ) ) {
+		// Return user's own callback function if exists and is allowed.
+		if ( function_exists( $this->args['callback_function'] ) && in_array( $this->args['callback_function'], dfads_allowed_callback_functions(), true ) ) {
 			return call_user_func_array($this->args['callback_function'], array( $ads, $this->args ));
 		}
 				
@@ -64,19 +64,7 @@ class DFADS {
 			$new_args[$k] = $v;
 		}
 
-		$defaults = array (
-			'groups' 			=> '-1',
-			'limit' 			=> '-1',
-			'orderby' 			=> 'random',
-			'order' 			=> 'ASC',
-			'container_id'    	=> '',
-			'container_html' 	=> 'div',
-			'container_class' 	=> '',
-			'ad_html' 			=> 'div',
-			'ad_class' 			=> '',
-			'callback_function' => '',
-			'return_javascript' => '',
-		);
+		$defaults = $this->get_default_params();
 				
 		$this->args = wp_parse_args( $new_args, $defaults );
 	}
@@ -276,17 +264,21 @@ class DFADS {
 		$args['return_javascript'] = '0';
 		$args['_block_id'] = $id;
 		$args['container_html'] = 'none'; // Set to 'none' so we don't display the container HTML twice.
+		$args['action']            = 'dfads_ajax_load_ads';
+
+		// Sign the request.
+		$signature         = dfads_hash_hmac( serialize( $args ) );
+		$args['signature'] = $signature;
 		
 		return '
 		<'.$this->args['container_html'].' id="'.$id.'" class="dfads-javascript-load"></'.$this->args['container_html'].'>
 		<script>
 		(function($) { 
-			$("#'.$id .'").load("'.admin_url( 'admin-ajax.php?action=dfads_ajax_load_ads&'.http_build_query( $args ) ).'" );			
+			$("#' . $id . '").load("' . admin_url( 'admin-ajax.php?' . http_build_query( $args ) ) . '" );			
 		})( jQuery );
 		</script>
 		<noscript>'.dfads( http_build_query( $args )  ).'</noscript>
 		';
-		
 	}
 	
 	/**
@@ -359,5 +351,21 @@ class DFADS {
 			$randomString .= $characters[rand(0, strlen($characters) - 1)];
 		}
 		return $randomString;
+	}
+
+	public static function get_default_params() {
+		return array(
+			'groups'            => '-1',
+			'limit'             => '-1',
+			'orderby'           => 'random',
+			'order'             => 'ASC',
+			'container_id'      => '',
+			'container_html'    => 'div',
+			'container_class'   => '',
+			'ad_html'           => 'div',
+			'ad_class'          => '',
+			'callback_function' => '',
+			'return_javascript' => '',
+		);
 	}
 }

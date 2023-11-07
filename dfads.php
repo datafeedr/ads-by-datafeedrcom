@@ -3,12 +3,12 @@
 Plugin Name: Ads by datafeedr.com
 Plugin URI: https://www.datafeedr.com/
 Description: Randomly display any type of advertisement anywhere on your site.  Add rotating banner ads, Google Adsense, videos, text links and more to your sidebar, widget areas, posts and pages.
-Version: 1.1.3
-Tested up to: 5.7
+Version: 1.2.0
+Tested up to: 6.3.3-alpha
 Author: datafeedr.com
 Author URI: https://www.datafeedr.com/
 
-Copyright 2021 Ads by datafeedr.com
+Copyright 2023 Ads by datafeedr.com
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -29,11 +29,12 @@ define( 'DFADS_PLUGIN_URL', plugin_dir_url(__FILE__) );
 define( 'DFADS_METABOX_PREFIX', '_dfads_' );
 define( 'DFADS_CONTEXT', 'dfads' );
 define( 'DFADS_DOCS_URL', 'http://www.datafeedr.com/dfads/' );
-define( 'DFADS_VERSION', '1.1.3' );
+define( 'DFADS_VERSION', '1.2.0' );
 
 /**
  * Require necessary files.
  */
+require_once( DFADS_PLUGIN_PATH . 'inc/functions.php' );
 require_once( DFADS_PLUGIN_PATH . 'inc/cpt.class.php' );
 require_once( DFADS_PLUGIN_PATH . 'inc/dfads.class.php' );
 
@@ -65,9 +66,42 @@ function dfads( $args='' ) {
  * WP Ajax for front and backend.
  */
 function dfads_ajax_load_ads(){
-	echo dfads( $_REQUEST );
+
+	$request = $_REQUEST;
+
+	$user_signature = trim( $request['signature'] ?? '' );
+
+	if ( empty( $user_signature ) ) {
+		die( 'Missing signature' );
+	}
+
+	unset( $request['signature'] );
+
+	$allowed_params = array_keys( DFADS::get_default_params() );
+
+	foreach ( $request as $k => $v ) {
+
+		// These are added here: DFADS::get_javascript();
+		if ( in_array( $k, [ '_block_id', 'action' ] ) ) {
+			continue;
+		}
+
+		// Remove any other keys provided that aren't allowed.
+		if ( ! in_array( $k, $allowed_params, true ) ) {
+			unset( $request[ $k ] );
+		}
+	}
+
+	$known_signature = dfads_hash_hmac( serialize( $request ) );
+
+	if ( ! hash_equals( $known_signature, $user_signature ) ) {
+		die( 'Invalid signature' );
+	}
+
+	echo dfads( $request );
 	die;
 }
+
 add_action('wp_ajax_nopriv_dfads_ajax_load_ads', 'dfads_ajax_load_ads');
 add_action('wp_ajax_dfads_ajax_load_ads', 'dfads_ajax_load_ads');
 

@@ -3,8 +3,8 @@
 Contributors: datafeedr.com
 Tags: ads, random ads, rotating ads, datafeedr, advertisements, advertising, banner ads, banners, adsense, google adsense
 Requires at least: 3.5
-Tested up to: 5.7
-Stable tag: 1.1.3
+Tested up to: 6.3.3-alpha
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,19 @@ Add and display ads randomly on your blog. Sort ads randomly, limit the number o
 The Ads plugin allows you to add advertisements to your blog.  You can add advertisements to your posts, pages or Text Widgets via the shortcode.  You can also add ads to your site by adding a function to your theme's template files.
 
 You have full control over how many ads get displayed as well as their sort order.
+
+**Important**
+
+As of version 1.2.0, all custom callback functions (ie. `callback_function`) need to be returned by the `dfads_allowed_callback_functions()` function. To do this, add your allowed custom callback functions like this:
+
+```
+add_filter( 'dfads_allowed_callback_functions', function ( array $functions ) {
+	$functions[] = 'my_first_custom_callback_function';
+	$functions[] = 'my_second_custom_callback_function';
+
+	return $functions;
+} );
+```
 
 [youtube http://www.youtube.com/watch?v=tPL8ND0nh4o]
 
@@ -98,6 +111,9 @@ View the full video tutorial playlist [here](http://www.youtube.com/playlist?lis
 [youtube http://www.youtube.com/watch?v=MU87O6J9zSo]
 
 == Changelog ==
+
+= 1.2.0 - 2023/11/07 =
+* Added signed requests for ad blocks rendered via Javascript.
 
 = 1.1.3 - 2020/03/08 =
 * Updated jQuery for upgrade.
